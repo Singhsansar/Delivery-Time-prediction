@@ -7,6 +7,8 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from Delivery_time_prediction.logger import logger
 from Delivery_time_prediction.exception import CustomException
+from Delivery_time_prediction.components.data_tranformation import DataTransformation
+from Delivery_time_prediction.components.model_trainer import ModelTrainer
 
 
 @dataclass
@@ -55,8 +57,3 @@ class DataIngestion:
         except Exception as e:
             logger.error(f"Error in data ingestion: {str(e)}")
             raise CustomException(e)
-
-
-if __name__ == "__main__":
-    data_ingestion = DataIngestion()
-    train_data, test_data = data_ingestion.initiate_data_ingestion()

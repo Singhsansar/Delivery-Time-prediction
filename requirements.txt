@@ -13,4 +13,5 @@ seaborn
 black
 flask
 lint
+xgboost
 -e .

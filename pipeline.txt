@@ -1,0 +1,5 @@
+const file -> configuration file ->data ingetion 
+
+#data Tranformation 
+
+constant file -> configuration -> data Tranformation -> utils file -> data trasformation 

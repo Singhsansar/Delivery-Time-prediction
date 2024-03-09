@@ -17,9 +17,9 @@ log_file_path = os.path.join(LOG_FILE_PATH, FILE_NAME)
 
 logging.basicConfig(
     filename=log_file_path,
-    filemode='a',  # Append mode to avoid overwriting existing logs
-    format='[%(asctime)s] %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
+    filemode="a",  # Append mode to avoid overwriting existing logs
+    format="[%(asctime)s] %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
 )
 
 logger = logging.getLogger("Delivery_time_predection logger")

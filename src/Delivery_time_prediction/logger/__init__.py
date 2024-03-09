@@ -22,4 +22,4 @@ logging.basicConfig(
     level=logging.INFO
 )
 
-
+logger = logging.getLogger("Delivery_time_predection logger")

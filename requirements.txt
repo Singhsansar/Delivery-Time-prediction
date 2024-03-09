@@ -1,5 +1,12 @@
 pandas
 numpy
+folium
+matplotlib
+numpy
+plotly
+pandas
+scikit-learn
+seaborn
 black
 flask
 lint

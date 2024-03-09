@@ -1,6 +1,8 @@
 pandas
 numpy
 folium
+ensure
+python-box==6.0.2
 matplotlib
 numpy
 plotly

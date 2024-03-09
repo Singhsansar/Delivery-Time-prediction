@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 __version__ = "0.0.1"
-NAME = "MachineLearningProject"
-REPONAME = "Machine-Learning-Project"
+NAME = "Delivery-Time-prediction"
+REPONAME = "Delivery-Time-prediction"
 AUTHOR = "Nikhil Kumar Singh(Nikhil)"
 AUTHOR_EMAIL = "aiengineer@nikhilsingh.com.np"
 AUTHOR_USER_NAME = "singhsansar"
@@ -37,7 +37,7 @@ setuptools.setup(
     version=__version__,
     author=AUTHOR_USER_NAME,
     author_email=AUTHOR_EMAIL,
-    description="A small Machine Learning Project",
+    description="A small Machine Learning Project, to predict the devliery time of the product.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url=f"https://github.com/{AUTHOR_USER_NAME}/{REPONAME}",

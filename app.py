@@ -99,21 +99,23 @@ def perform_batch_prediction():
 
 @app.route("/train", methods=["GET", "POST"])
 def train():
-    error_message = ""  # Initialize error message
-    success_message = ""  # Initialize success message
-    if request.method == "GET":
-        return render_template("train.html")
-    else:
-        try:
-            pipeline = Train()
-            pipeline.main()
-            success_message = "Training completed successfully."
-        except Exception as e:
-            logger.error(f"{e}")
-            error_message = str(e)
-        return render_template(
-            "index.html", error=error_message, success=success_message
-        )
+    return render_template("train.html")
+    # error_message = ""  # Initialize error message
+    # success_message = ""  # Initialize success message
+    
+    # if request.method == "GET":
+    #     return render_template("train.html")
+    # else:
+    #     try:
+    #         pipeline = Train()
+    #         pipeline.main()
+    #         success_message = "Training completed successfully."
+    #     except Exception as e:
+    #         logger.error(f"{e}")
+    #         error_message = str(e)
+    #     return render_template(
+    #         "index.html", error=error_message, success=success_message
+    #     )
 
 
 if __name__ == "__main__":

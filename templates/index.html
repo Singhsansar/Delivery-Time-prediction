@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivery Time Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("https://img.freepik.com/free-vector/delivery-service-with-mask-illustrated-design_23-2148510130.jpg?w=826&t=st=1710071085~exp=1710071685~hmac=6d42253cc09b11c91e068b490be983c5cb995a2999be7b1f636811d4e0d0601e");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin: 10px 10px;
+        flex: 1;
+        max-width: 800px; /* Adjust card width as needed */
+        min-height: 400px; /* Adjust card height as needed */
+        max-height: 400px; /* Adjust card height as needed */
+      }
+
+      .card img {
+        width: 100%;
+        height: auto;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      h1 {
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      a:hover {
+        background-color: #0056b3;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        margin-top: 10vw;
+      }
+
+      .message {
+        color: blue;
+        font-size: 22px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        display: none; /* Hide the error message by default */
+      }
+    </style>
+  </head>
+  <body>
+    <h1
+      style="
+        color: black;
+        position: absolute;
+        top: 0;
+        left: 13px;
+        font-weight: 800;
+        font-size: 30px;
+      "
+    >
+      Welcome to Delivery Time Prediction System
+    </h1>
+    <div class="container">
+      <div class="card-container">
+        <div class="card">
+          <img
+            src="https://images.rawpixel.com/image_1100/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAyL3Jhd3BpeGVsX29mZmljZV81NF9taW5pbWFsX3Bob3RvX2JhY2tncm91bmRfb2ZfbWFjaGluZV9sZWFybmluZ18yZTAwMmZkYS1kMzkxLTQ2MDUtYmY5Zi01MmE3N2NlMzU0NjFfMS5qcGc.jpg"
+            alt="Train Model"
+          />
+          <div class="card-content">
+            <a href="/train">Train Model</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="https://images.rawpixel.com/image_png_1100/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8xMF8zZF9jaGFyYWN0ZXJfaWxsdXN0cmF0aW9uX2lzb2xhdGVkX2luX3doaXRlX19mN2VkNTQxOC0xNzY0LTRlMDAtOTIxMy02NGJkZWM4MTA0ZWIucG5n.png"
+            alt="Predict Delivery Time"
+          />
+          <div class="card-content">
+            <a href="/predict">Predict Delivery Time</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="https://img.freepik.com/premium-vector/express-delivery-icon-fast-delivery-express-urgent-delivery-services-stopwatch-sign_349999-966.jpg"
+            alt="Perform Batch Prediction"
+          />
+          <div class="card-content">
+            <a href="/batch">Perform Batch Prediction</a>
+          </div>
+        </div>
+      </div>
+      <div class="center message" id="error-message" style="display: none">
+        <p class="message" id="errorMessage"></p>
+      </div>
+      <div class="center message" id="success-message" style="display: none">
+        <p class="message" id="successMessage"></p>
+      </div>
+    </div>
+    <script>
+      // JavaScript code to show only error message if it exists
+      window.onload = function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var error = urlParams.get("error");
+        var success = urlParams.get("success");
+
+        var errorMessage = document.getElementById("error-message");
+        var successMessage = document.getElementById("success-message");
+        var errorMessageElement = document.getElementById("errorMessage");
+        var successMessageElement = document.getElementById("successMessage");
+
+        if (error) {
+          errorMessage.style.display = "block";
+          errorMessageElement.innerText = "Error: " + error;
+        }
+
+        if (success) {
+          successMessage.style.display = "block";
+          successMessageElement.innerText = "Success: " + success;
+        }
+      };
+    </script>
+  </body>
+</html>

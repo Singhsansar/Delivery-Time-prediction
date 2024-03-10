@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Model</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("https://images.rawpixel.com/image_1100/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAyL3Jhd3BpeGVsX29mZmljZV81NF9taW5pbWFsX3Bob3RvX2JhY2tncm91bmRfb2ZfbWFjaGluZV9sZWFybmluZ19mYTBlYWY4Zi02MGJjLTRmODItODM2ZC1jNjhhMDQyNjkyNTJfMS5qcGc.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: inline-block;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .message {
+        color: blue;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1
+      style="
+        color: white;
+        position: absolute;
+        top: 0;
+        left: 13px;
+        font-weight: 800;
+        font-size: 30px;
+      "
+    >
+      Training the Model
+    </h1>
+    <div class="container">
+      <div class="card">
+        <h1>Train Model</h1>
+        <form action="/train" method="post">
+          <input type="submit" value="Train Model" />
+        </form>
+        <br />
+        <div id="error-message" style="display: none">
+          {% if error %}
+          <p class="message">Error: {{ error }}</p>
+          {% endif %}
+        </div>
+        <div id="success-message" style="display: none">
+          {% if success %}
+          <p class="message">Success: {{ success }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <script>
+      // JavaScript code to show error or success messages if they exist
+      window.onload = function () {
+          var errorMessage = document.getElementById('error-message');
+          var successMessage = document.getElementById('success-message');
+
+          {% if error %}
+          errorMessage.style.display = 'block';
+          {% endif %}
+
+          {% if success %}
+          successMessage.style.display = 'block';
+          {% endif %}
+      }
+    </script>
+  </body>
+</html>

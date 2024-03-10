@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivery Time Prediction Result</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("https://images.rawpixel.com/image_1100/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTAyL3Jhd3BpeGVsX29mZmljZV81NF9taW5pbWFsX3Bob3RvX2JhY2tncm91bmRfb2ZfbWFjaGluZV9sZWFybmluZ19mYTBlYWY4Zi02MGJjLTRmODItODM2ZC1jNjhhMDQyNjkyNTJfMS5qcGc.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 50px auto;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        color: #ff5722;
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 24px;
+        color: #222; /* Deep dark color */
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1
+      style="
+        color: white;
+        position: absolute;
+        top: 0;
+        left: 13px;
+        font-weight: 800;
+        font-size: 30px;
+      "
+    >
+      The Result
+    </h1>
+    <div class="card">
+      <h1>Delivery Time Prediction Result</h1>
+      <h2 id="result-title">The Result</h2>
+      <p id="result-message">
+        Estimated Delivery Time:
+        <span id="delivery-time">{{ final_result }} mins</span>
+      </p>
+    </div>
+
+    <script>
+      // JavaScript code to show the result message if final_result exists
+      window.onload = function () {
+        var finalResult = "{{ final_result }}";
+        var resultTitle = document.getElementById("result-title");
+        var resultMessage = document.getElementById("result-message");
+
+        if (finalResult.trim() === "") {
+          resultTitle.style.display = "none";
+          resultMessage.style.display = "none";
+        } else {
+          resultTitle.style.display = "block";
+          resultMessage.style.display = "block";
+        }
+      };
+    </script>
+  </body>
+</html>

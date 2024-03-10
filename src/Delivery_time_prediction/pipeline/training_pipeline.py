@@ -15,7 +15,7 @@ from Delivery_time_prediction.components.data_ingestion import (
 
 
 class Train:
-    def _init__(self):
+    def __init__(self):
         self.c = 0
         print(f"*******{self.c}********")
 
@@ -28,4 +28,6 @@ class Train:
             data_transformation.inititate_data_transformation(train_data, test_data)
         )
         model_trainer = ModelTrainer()
-        print(model_trainer.initiate_model_training(train_arr, test_arr))
+        model_trainer.initiate_model_training(train_arr, test_arr)
+        logger.info('===================Model training completed==========================')
+        print('===================Model training completed==========================')

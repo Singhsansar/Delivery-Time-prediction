@@ -40,11 +40,13 @@ class ModelTrainer:
             best_model_name = max(model_report, key=model_report.get)
             best_model_score = model_report[best_model_name]
 
+            print("=" * 50)
+
             print(f"Best model is {best_model_name}, R2 score is {best_model_score}")
             logger.info(
                 f"Best model is {best_model_name}, R2 score is {best_model_score}"
             )
-
+            print("=" * 50)
             save_obj(
                 file_path=self.model_trainer_config.trained_model_file_path,
                 obj=models[best_model_name],

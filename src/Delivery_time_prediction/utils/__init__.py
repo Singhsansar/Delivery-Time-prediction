@@ -13,7 +13,7 @@ def save_obj(file_path, obj):
             pickle.dump(obj, file_obj)
 
     except Exception as e:
-        raise CustomException(e, sys)
+        raise CustomException(e)
 
 
 def evaluate_model(x_train, y_train, x_test, y_test, models):
@@ -27,7 +27,7 @@ def evaluate_model(x_train, y_train, x_test, y_test, models):
         return report
     except Exception as e:
         logger.error(f"Error in model evaluation: {str(e)}")
-        raise CustomException(e, sys)
+        raise CustomException(e)
 
 
 def load_model(MODEL_FILE_PATH):
@@ -37,4 +37,4 @@ def load_model(MODEL_FILE_PATH):
         return model
     except Exception as e:
         logger.error(f"Error in model loading: {str(e)}")
-        raise CustomException(e, sys)
+        raise CustomException(e)

@@ -1,15 +1,11 @@
 from flask import Flask, render_template, request
-from Delivery_time_prediction.constants import *
-from Delivery_time_prediction.config.configuration import *
-from Delivery_time_prediction.logger import logger
-from Delivery_time_prediction.exception import CustomException
-import os
-from Delivery_time_prediction.components.data_ingestion import DataIngestion
-from Delivery_time_prediction.components.data_tranformation import (
-    DataTransformation,
-    DataTransformationConfig,
+from Delivery_time_prediction.config.configuration import (
+    FEATURE_ENGG_OBJ_FILE,
+    PREPROCESSING_OBJ_FILE,
+    MODEL_FILE_PATH,
 )
-from Delivery_time_prediction.components.model_trainer import ModelTrainer
+from Delivery_time_prediction.logger import logger
+import os
 from Delivery_time_prediction.pipeline.prediction_pipeline import (
     PredictionPipeline,
     customData,
@@ -40,8 +36,8 @@ def predict_datapoint():
         return render_template("form.html")
     else:
         data = customData(
-            Delivery_person_Age=int(request.form.get("Delivery_person_Age")),
-            Delivery_person_Ratings=float(request.form.get("Delivery_person_Ratings")),
+            Delivery_person_Age=int(request.form.get("age")),
+            Delivery_person_Ratings=float(request.form.get("rating")),
             Weather_conditions=request.form.get("Weather_conditions"),
             Road_traffic_density=request.form.get("Road_traffic_density"),
             Vehicle_condition=int(request.form.get("Vehicle_condition")),
@@ -54,7 +50,9 @@ def predict_datapoint():
         )
         final_new_data = data.get_data_as_dataframe()
         predict_pipeline = PredictionPipeline()
+
         pred = predict_pipeline.predict(final_new_data)
+        print(pred)
         result = int(pred[0])
 
         return render_template("result.html", final_result=result)
@@ -113,8 +111,9 @@ def train():
         except Exception as e:
             logger.error(f"{e}")
             error_message = str(e)
-        return render_template("index.html", error=error_message, success=success_message)
-
+        return render_template(
+            "index.html", error=error_message, success=success_message
+        )
 
 
 if __name__ == "__main__":

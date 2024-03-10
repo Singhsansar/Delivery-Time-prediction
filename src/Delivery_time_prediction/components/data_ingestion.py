@@ -1,14 +1,15 @@
-from Delivery_time_prediction.constants import *
-from Delivery_time_prediction.config.configuration import *
-import os, sys
+from Delivery_time_prediction.config.configuration import (
+    TRAIN_FILE_PATH,
+    TEST_FILE_PATH,
+    RAW_FILE_PATH,
+    DATASET_PATH,
+)
+import os
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from Delivery_time_prediction.logger import logger
 from Delivery_time_prediction.exception import CustomException
-from Delivery_time_prediction.components.data_tranformation import DataTransformation
-from Delivery_time_prediction.components.model_trainer import ModelTrainer
 
 
 @dataclass

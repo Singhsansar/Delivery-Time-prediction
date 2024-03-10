@@ -1,5 +1,10 @@
-from Delivery_time_prediction.constants import *
-from Delivery_time_prediction.config.configuration import *
+from Delivery_time_prediction.config.configuration import (
+    PREPROCESSING_OBJ_FILE,
+    TRANSFORM_TRAIN_FILE_PATH,
+    TRANSFORM_TEST_FILE_PATH,
+    FEATURE_ENGG_OBJ_FILE,
+)
+import os
 from Delivery_time_prediction.logger import logger
 from Delivery_time_prediction.exception import CustomException
 from Delivery_time_prediction.utils import save_obj
@@ -13,6 +18,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
 
 
+# for processing the training data
 class Feature_Engineering(BaseEstimator, TransformerMixin):
     def __init__(self):
         logger.info("******************feature Engineering started******************")
@@ -55,24 +61,21 @@ class Feature_Engineering(BaseEstimator, TransformerMixin):
                 axis=1,
                 inplace=True,
             )
-
             logger.info("droping columns from our original dataset")
-
             return df
-
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e)
 
-    def fit(self, X, y=None):
-        return self
+    # def fit(self, X, y=None):
+    #     return self
 
-    def transform(self, X: pd.DataFrame, y=None):
+    def transform(self, X: pd.DataFrame):
         try:
             transformed_df = self.transform_data(X)
 
             return transformed_df
         except Exception as e:
-            raise CustomException(e, sys) from e
+            raise CustomException(e) from e
 
 
 @dataclass
@@ -152,12 +155,12 @@ class DataTransformation:
                     ("ordinal_pipeline", ordinal_pipeline, ordinal_encoder),
                 ]
             )
-
+            # save the preprocessor after fit , and can be used later to transform
             logger.info("Pipeline Steps Completed")
             return preprocssor
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e)
 
     def get_feature_engineering_object(self):
         try:
@@ -166,7 +169,7 @@ class DataTransformation:
             return feature_engineering
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e)
 
     def inititate_data_transformation(self, train_path, test_path):
         try:
@@ -183,7 +186,7 @@ class DataTransformation:
             # train_df.to_csv("train_data.csv")
             # test_df.to_csv("test_data.csv")
 
-            processinf_obj = self.get_data_transformation_obj()
+            processing_obj = self.get_data_transformation_obj()
 
             traget_columns_name = "Time_taken (min)"
 
@@ -193,8 +196,8 @@ class DataTransformation:
             X_test = test_df.drop(columns=traget_columns_name, axis=1)
             y_test = test_df[traget_columns_name]
 
-            X_train = processinf_obj.fit_transform(X_train)
-            X_test = processinf_obj.transform(X_test)
+            X_train = processing_obj.fit_transform(X_train)
+            X_test = processing_obj.transform(X_test)
 
             train_arr = np.c_[X_train, np.array(y_train)]
             test_arr = np.c_[X_test, np.array(y_test)]
@@ -225,11 +228,11 @@ class DataTransformation:
             save_obj(
                 file_path=self.data_transformation_config.proccessed_obj_file_path,
                 obj=fe_obj,
-            )
+            )  # for the preprocessing like droping the columns from the original dataset
 
             save_obj(
                 file_path=self.data_transformation_config.feature_engg_obj_path,
-                obj=fe_obj,
+                obj=processing_obj,
             )
 
             return (
@@ -239,4 +242,4 @@ class DataTransformation:
             )
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e)

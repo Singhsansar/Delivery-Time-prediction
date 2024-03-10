@@ -1,8 +1,9 @@
-from Delivery_time_prediction.constants import *
-from Delivery_time_prediction.config.configuration import *
+from Delivery_time_prediction.config.configuration import (
+    FEATURE_ENGG_OBJ_FILE,
+    MODEL_FILE_PATH,
+)
 from Delivery_time_prediction.logger import logger
 from Delivery_time_prediction.exception import CustomException
-import os, sys
 import pandas as pd
 from Delivery_time_prediction.utils import load_model
 
@@ -13,45 +14,17 @@ class PredictionPipeline:
 
     def predict(self, features):
         try:
-            preprocessor_path = PREPROCESSING_OBJ_FILE
+            preprocessor_path = FEATURE_ENGG_OBJ_FILE
             model_path = MODEL_FILE_PATH
             preprocessor = load_model(preprocessor_path)
             model = load_model(model_path)
             data_scaled = preprocessor.transform(features)  # transform the features
             prediction = model.predict(data_scaled)  # predict the delivery time
             return prediction
-
         except Exception as e:
 
             logger.error(f"Error in prediction pipeline: {str(e)}")
-            raise CustomException(e, sys)
-
-        """_
-            Road_traffic_density = ["Low", "Medium", "High", "Jam"]
-            Weather_conditions = [
-                "Sunny",
-                "Cloudy",
-                "Fog",
-                "Sandstorms",
-                "Windy",
-                "Stormy",
-            ]
-
-            categorical_columns = [
-                "Type_of_order",
-                "Type_of_vehicle",
-                "Festival",
-                "City",
-            ]
-            ordinal_encoder = ["Road_traffic_density", "Weather_conditions"]
-            numerical_column = [
-                "Delivery_person_Age",
-                "Delivery_person_Ratings",
-                "Vehicle_condition",
-                "multiple_deliveries",
-                "distance",
-            ]
-        """
+            raise CustomException(e)
 
 
 class customData:
@@ -64,7 +37,7 @@ class customData:
         Vehicle_condition: int,
         multiple_deliveries: int,
         distance: float,
-        Types_of_order: str,
+        Type_of_order: str,
         Type_of_vehicle: str,
         Festival: str,
         City: str,
@@ -76,7 +49,7 @@ class customData:
         self.Vehicle_condition = Vehicle_condition
         self.multiple_deliveries = multiple_deliveries
         self.distance = distance
-        self.Types_of_order = Types_of_order
+        self.Type_of_order = Type_of_order
         self.Type_of_vehicle = Type_of_vehicle
         self.Festival = Festival
         self.City = City
@@ -91,7 +64,7 @@ class customData:
                 "Vehicle_condition": [self.Vehicle_condition],
                 "multiple_deliveries": [self.multiple_deliveries],
                 "distance": [self.distance],
-                "Types_of_order": [self.Types_of_order],
+                "Type_of_order": [self.Type_of_order],
                 "Type_of_vehicle": [self.Type_of_vehicle],
                 "Festival": [self.Festival],
                 "City": [self.City],
@@ -101,4 +74,4 @@ class customData:
 
         except Exception as e:
             logger.error(f"Error in customData pipeline dataframe: {str(e)}")
-            raise CustomException(e, sys)
+            raise CustomException(e)

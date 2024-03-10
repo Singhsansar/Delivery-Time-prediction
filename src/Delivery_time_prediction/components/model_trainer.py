@@ -7,7 +7,7 @@ from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
-import os, sys
+import sys
 
 
 class ModelTrainerConfig:

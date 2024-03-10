@@ -78,27 +78,36 @@
 
     <div class="container">
       <h2 style="text-align: center">Delivery Information</h2>
-      <form action="/predict" method="post">
+      <form action="/predict" method="POST">
         <label for="age">Age:</label>
-        <input type="number" id="age" name="age" min="0" />
+        <input type="number" id="age" name="age" min="0" required />
+
+        <label for="rating">Delivery Person Rating: </label>
+        <input
+          type="number"
+          id="rating"
+          name="rating"
+          min="0"
+          max="5"
+          step="0.1"
+          required
+        />
 
         <label for="distance">Distance:</label>
-        <input type="number" id="distance" name="distance" min="0" />
+        <input type="number" id="distance" name="distance" min="0" required />
 
         <label for="weather">Weather Conditions:</label>
-        <select id="weather" name="weather">
-          <option value="sunny">Sunny</option>
-          <option value="rainy">Rainy</option>
-          <option value="cloudy">Cloudy</option>
-          <option value="snowy">Snowy</option>
-          <option value="fog">Fog</option>
-          <option value="stormy">Stormy</option>
-          <option value="sandstorms">Sandstorms</option>
-          <option value="windy">Windy</option>
+        <select id="weather" name="Weather_conditions" required>
+          <option value="Sunny">Sunny</option>
+          <option value="Cloudy">Cloudy</option>
+          <option value="Fog">Fog</option>
+          <option value="Stormy">Stormy</option>
+          <option value="Sandstorms">Sandstorms</option>
+          <option value="Windy">Windy</option>
         </select>
 
         <label for="traffic">Road Traffic Density:</label>
-        <select id="traffic" name="traffic">
+        <select id="traffic" name="Road_traffic_density" required>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
@@ -109,21 +118,30 @@
         <input
           type="number"
           id="vehicle_condition"
-          name="vehicle_condition"
+          name="Vehicle_condition"
           min="0"
           max="5"
         />
 
+        <label for="multiple_deliveries">Multiple Deliveries:</label>
+        <input
+          type="number"
+          id="multiple_deliveries"
+          name="multiple_deliveries"
+          min="0"
+          required
+        />
+
         <label for="order_type">Type of Order:</label>
-        <select id="order_type" name="order_type">
-          <option value="snack">Snack</option>
-          <option value="meal">Meal</option>
-          <option value="drinks">Drinks</option>
-          <option value="buffet">Buffet</option>
+        <select id="order_type" name="Type_of_order" required>
+          <option value="Snack">Snack</option>
+          <option value="Meal">Meal</option>
+          <option value="Drinks">Drinks</option>
+          <option value="Buffet">Buffet</option>
         </select>
 
         <label for="vehicle_type">Type of Vehicle:</label>
-        <select id="vehicle_type" name="vehicle_type">
+        <select id="vehicle_type" name="Type_of_vehicle" required>
           <option value="motorcycle">Motorcycle</option>
           <option value="scooter">Scooter</option>
           <option value="electric_scooter">Electric Scooter</option>
@@ -131,13 +149,13 @@
         </select>
 
         <label for="festival">Festival:</label>
-        <select id="festival" name="festival">
+        <select id="festival" name="Festival" required>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
 
         <label for="city">City:</label>
-        <select id="city" name="city">
+        <select id="city" name="City" required>
           <option value="Metropolitan">Metropolitan</option>
           <option value="Urban">Urban</option>
           <option value="Semi-Urban">Semi-Urban</option>

@@ -20,3 +20,7 @@
    ```bash
    pip install -r requirements.txt
    ```
+5. Run app.py
+   ```bash
+   python app.py
+   ```

@@ -1,5 +1,5 @@
 install:
-	pip install --upgrade pip &&\
+	pip install --upgrade pip && \
 		pip install -r requirements.txt
 
 test: 
@@ -9,6 +9,6 @@ format:
 	find . -type d -name '.venv' -prune -o -type f -name '*.py' -exec black {} +
 
 lint: 
-	pylint --disable=R,C *.py
+	find . -name '*.py' -not -path './.venv/*' -exec pylint --disable=R,C {} +
 
 all: install lint test format

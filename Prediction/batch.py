@@ -50,8 +50,6 @@ class BatchPrediction:
 
             # Apply data transformation pipeline
             transformed_data = processor.transform(df)
-
-            # Make predictions using the model
             predictions = model.predict(transformed_data)
             df_predictions = pd.DataFrame(predictions, columns=["Prediction"])
 
